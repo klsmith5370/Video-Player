@@ -39,3 +39,21 @@ function rewindNforwardFn(type) {
 
 rewindBtn.addEventListener("click", () => rewindNforwardFn("rewind"));
 fastForwardBtn.addEventListener("click", () => rewindNforwardFn("forward"));
+
+// Mute & unmute functionality
+const volumeBtn = document.querySelector("#volume");
+
+function muteNunmuteFn() {
+  video.muted = video.muted ? false : true;
+}
+
+function updateVolumeIcon() {
+  const icon = volumeBtn.querySelector("i");
+  icon.textContent = "";
+  icon.textContent = video.muted ? "volume_off" : "volume_up";
+}
+
+video.addEventListener("volumechange", updateVolumeIcon);
+volumeBtn.addEventListener("click", muteNunmuteFn);
+
+// Updating Progress Bar 
