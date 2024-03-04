@@ -57,3 +57,28 @@ video.addEventListener("volumechange", updateVolumeIcon);
 volumeBtn.addEventListener("click", muteNunmuteFn);
 
 // Updating Progress Bar 
+const progressIndicator = document.querySelector("#progress-indicator");
+
+function updateProgress() {
+  const progressPercentage = (video.currentTime / video.duration) * 100;
+
+  progressIndicator.style.width = `${progressPercentage}%`;
+}
+
+video.addEventListener("timeupdate", updateProgress);
+
+// Seeking functionality
+const progessBar = document.querySelector("#progress-bar");
+
+function seekingFn(e) {
+  const updatedTime = (e.offsetX / progessBar.offsetWidth) * video.duration;
+
+  video.currentTime = updatedTime;
+}
+
+let mouseIsDown = false;
+
+progessBar.addEventListener("mousedown", () => (mouseIsDown = true));
+progessBar.addEventListener("mouseup", () => (mouseIsDown = false));
+progessBar.addEventListener("click", seekingFn);
+progessBar.addEventListener("mousemove", (e) => mouseIsDown && seekingFn);
