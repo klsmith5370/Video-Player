@@ -82,3 +82,16 @@ progessBar.addEventListener("mousedown", () => (mouseIsDown = true));
 progessBar.addEventListener("mouseup", () => (mouseIsDown = false));
 progessBar.addEventListener("click", seekingFn);
 progessBar.addEventListener("mousemove", (e) => mouseIsDown && seekingFn);
+
+// Keyboard Navigation
+window.addEventListener("keyup", (e) => {
+  if (e.code === "Space") {
+    playNpauseFn();
+  } else if (e.code === "ArrowLeft") {
+    rewindNforwardFn("rewind");
+  } else if (e.code === "ArrowRight") {
+    rewindNforwardFn("forward");
+  } else {
+    return;
+  }
+});
